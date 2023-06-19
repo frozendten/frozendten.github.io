@@ -127,7 +127,7 @@ function autoSafelinkLoad()
 
 				if (linkExceptionStatus == false || onlyThisLinkStatus == true) {	
 					let randomIndex = parseInt(Math.random() * postLinks.length); 
-					tagLinks[i].href = `https://www.frozendten.my.id/2023/06/exploring-cryptocurrency-beginners.html#?${autoSafeLink.safeLinkConfig.parameterName}=${aesCrypto.encrypt(trimString(tagLinks[i].href), trimString(autoSafeLink.safeLinkConfig.secretKey))}`
+					tagLinks[i].href = `https://www.yumeost.net/out#?${autoSafeLink.safeLinkConfig.parameterName}=${aesCrypto.encrypt(trimString(tagLinks[i].href), trimString(autoSafeLink.safeLinkConfig.secretKey))}`
 					tagLinks[i].target = "_blank";
 				}
 
