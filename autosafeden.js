@@ -67,8 +67,18 @@ function autoSafelinkLoad()
 
 		jsonp(`https://www.blogger.com/feeds/${autoSafeLink.safeLinkConfig.blogId}/posts/default?alt=json-in-script&amp;max-results=15`, function(datajson) {
 
-			let postLinks = ["https://www.frozendten.my.id/2023/06/exploring-cryptocurrency-beginners.html"];
-			
+			let postLinks = [];
+			var countPost = datajson.feed.openSearch$totalResults.$t;
+			for(var i = 0; i < countPost; i++) {
+				let postUrl;
+				for (var s = 0; s < datajson.feed.entry[i].link.length; s++) {
+					if(datajson.feed.entry[i].link[s].rel == 'alternate') {
+						postUrl = datajson.feed.entry[i].link[s].href;
+						break;
+					}
+				}
+				postLinks[i] = postUrl;
+			}
 
 			/* replace link helper */
 			const getDomainName = (url) => {
@@ -117,7 +127,7 @@ function autoSafelinkLoad()
 
 				if (linkExceptionStatus == false || onlyThisLinkStatus == true) {	
 					let randomIndex = parseInt(Math.random() * postLinks.length); 
-					tagLinks[i].href = `${postLinks[0]}#?${autoSafeLink.safeLinkConfig.parameterName}=${aesCrypto.encrypt(trimString(tagLinks[i].href), trimString(autoSafeLink.safeLinkConfig.secretKey))}`
+					tagLinks[i].href = `https://www.frozendten.my.id/2023/06/exploring-cryptocurrency-beginners.html#?${autoSafeLink.safeLinkConfig.parameterName}=${aesCrypto.encrypt(trimString(tagLinks[i].href), trimString(autoSafeLink.safeLinkConfig.secretKey))}`
 					tagLinks[i].target = "_blank";
 				}
 
